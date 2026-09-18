@@ -1,0 +1,18 @@
+[Unit]
+Description=NodeSeek notify and checkin
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/nodeseek-notify
+ExecStart=/root/nodeseek-notify/venv/bin/python /root/nodeseek-notify/notify.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+# 建议不要把密钥写进 systemd 文件，统一放 config.yaml
+
+[Install]
+WantedBy=multi-user.target
