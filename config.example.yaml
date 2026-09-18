@@ -1,0 +1,74 @@
+# ============================================================
+# NodeSeek 通知 + 签到 配置文件
+# 使用方法：
+#   cp config.example.yaml config.yaml
+#   再编辑 config.yaml（不要把填好的文件提交到 GitHub）
+# ============================================================
+
+telegram:
+  # BotFather 创建机器人后得到的 Token
+  # 例: 123456789:AA....
+  bot_token: "YOUR_TELEGRAM_BOT_TOKEN"
+
+  # 接收通知的 Chat ID
+  # 个人是纯数字，例如 123456789
+  # 群组/频道一般是负数，例如 -1001234567890
+  chat_id: "YOUR_TELEGRAM_CHAT_ID"
+
+nodeseek:
+  # 登录 Cookie 文件路径，相对脚本目录或绝对路径都可以
+  # 格式支持：
+  # 1) [{"name":"session","value":"..."}, ...]
+  # 2) {"session":"...","pjwt":"..."}
+  cookie_file: "cookies.json"
+
+  # curl_cffi 浏览器指纹，一般不用改
+  impersonate: "chrome124"
+
+  # 可选。用来识别“自己发出的私信”
+  # 通常留空：脚本会从 cookies.json 里的 pjwt 自动解析
+  # 解析失败时，填个人空间 URL 中的数字 ID，例如 12345
+  my_user_id: ""
+
+  # 可选。与 my_user_id 二选一或同时填，按用户名兜底判断
+  my_username: ""
+
+paths:
+  # 已处理通知去重文件
+  notify_seen_file: "notify_seen.json"
+
+  # 签到日期记录，避免同一天重复签到
+  checkin_state_file: "checkin_state.json"
+
+intervals:
+  # Cookie 有效性检查间隔（秒）
+  cookie_check: 3600
+
+  # 拉取站内通知间隔（秒）
+  notify_check: 60
+
+  # 主循环休眠（秒），建议 <= notify_check
+  loop_sleep: 30
+
+checkin:
+  # 是否启用每日签到
+  enabled: true
+
+  # 每天几点之后才签到（本地服务器时区）
+  hour: 8
+
+  # true = 随机鸡腿；false = 固定签到
+  random: false
+
+notify:
+  # 三类站内通知开关
+  private_message: true
+  reply_to_me: true
+  at_me: true
+
+  # true：自己发给别人的私信只入库，不推 Telegram
+  skip_outgoing_pm: true
+
+  # true：本轮只把现有通知记入已读，不推送
+  # 首次部署、或换号后怕刷屏时开一次，跑一轮后改回 false
+  force_bootstrap: false
