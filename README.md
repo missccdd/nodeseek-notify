@@ -488,7 +488,7 @@ sudo journalctl -u nodeseek-notify -n 100 --no-pager
 | `notify.at_me` | 是否推@我 | 默认开启 |
 | `notify.skip_outgoing_pm` | 忽略自己发出的私信 | 默认开启 |
 | `notify.force_bootstrap` | 本轮只记已读不推送 | 默认关闭 |
-| `intervals.notify_check` | 检查通知间隔（秒） | 默认 `60` |
+| `intervals.notify_check` | 检查通知间隔（秒） | 默认 `300` |
 
 ---
 
