@@ -45,7 +45,7 @@ intervals:
   cookie_check: 3600
 
   # 拉取站内通知间隔（秒）
-  notify_check: 60
+  notify_check: 300
 
   # 主循环休眠（秒），建议 <= notify_check
   loop_sleep: 30
