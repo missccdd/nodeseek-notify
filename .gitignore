@@ -1,0 +1,14 @@
+# 本地密钥与登录态，禁止提交
+config.yaml
+cookies.json
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# 运行时状态
+notify_seen.json
+notify_seen.json.bak
+checkin_state.json
+*.log
